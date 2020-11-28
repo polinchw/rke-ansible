@@ -39,3 +39,5 @@ rke_ingress_config:
   provider: nginx
 
 manifests_dir: "{{ ansible_env.HOME | default(ansible_env.PWD) | default('/root') }}/manifests"
+
+cluster_name: rke-cluster
