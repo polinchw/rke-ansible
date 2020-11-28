@@ -75,9 +75,9 @@
   command: sysctl --system
   when: sysctl_k8s_conf is changed
 
-- name: Ensure SELinux is disabled
-  selinux:
-    state: disabled
+#- name: Ensure SELinux is disabled
+#  selinux:
+#    state: disabled
 
 - name: Remove swap volumes from /etc/fstab
   lineinfile:
