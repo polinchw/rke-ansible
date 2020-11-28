@@ -53,11 +53,6 @@
     groups: [dockerroot]
     append: yes
 
-- name: Ensure firewalld is started
-  service:
-    name: firewalld
-    state: started
-    enabled: yes
 
 # The trusted zone allows all traffic
 - name: Allow all traffic from cluster CIDR
