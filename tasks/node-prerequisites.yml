@@ -55,13 +55,13 @@
 
 
 # The trusted zone allows all traffic
-- name: Allow all traffic from cluster CIDR
-  firewalld:
-    zone: trusted
-    source: "{{ cluster_cidr }}"
-    state: enabled
-    immediate: yes
-    permanent: yes
+#- name: Allow all traffic from cluster CIDR
+#  firewalld:
+#    zone: trusted
+#    source: "{{ cluster_cidr }}"
+#    state: enabled
+#    immediate: yes
+#    permanent: yes
 
 - name: Create sysctl settings file for bridge settings
   copy:
