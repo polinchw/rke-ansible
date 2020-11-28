@@ -1,9 +1,12 @@
 ---
 
-# These tasks must be run on all Kubernetes nodes
-
+# These tasks must be run on all Kubernetes node
+- name: Install group
+  group:
+    name: dockerroot
+    state: present
 - name: Install Docker
-  yum:
+  apt:
     name: docker
     state: latest
   register: docker_install
