@@ -1,4 +1,4 @@
 ---
 - hosts: rancher
   roles:
-    - rke-ansible
+    - role: '/home/ubuntu/rke-ansible'
