@@ -25,7 +25,7 @@ rke_controller_hostname: "{{ ansible_play_hosts[0] }}"
 cluster_interface: "{{ ansible_default_ipv4.interface }}"
 cluster_cidr: "{{ [ansible_facts[cluster_interface].ipv4.network, ansible_facts[cluster_interface].ipv4.netmask] | join('/') | ipaddr('net') }}"
 
-rke_ssh_user: centos
+rke_ssh_user: ubuntu
 rke_node_roles: []
 
 openstack_auth_url: "{{ lookup('env', 'OS_AUTH_URL') }}"
