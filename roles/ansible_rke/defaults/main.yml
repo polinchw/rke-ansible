@@ -11,7 +11,7 @@ rke_version: v1.2.1
 rke_binary_url: "https://github.com/rancher/rke/releases/download/{{ rke_version }}/rke_linux-amd64"
 # @var rke_user: rke
 # User that will be used to connect on nodes during the installation proccess.
-rke_user: rke
+rke_user: ubuntu
 # @var rke_node: "{{ groups['masters'] | first }}"
 # Node that will be used to deploy cluster using RKE.
 rke_node: "{{ groups['masters'] | first }}"
