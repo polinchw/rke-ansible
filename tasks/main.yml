@@ -1,8 +1,0 @@
----
-
-- name: Install prerequisites on all hosts
-  include_tasks: node-prerequisites.yml
-
-- name: Run RKE installer
-  include_tasks: rke.yml
-  when: inventory_hostname == rke_controller_hostname
