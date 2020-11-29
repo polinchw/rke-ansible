@@ -1,5 +1,5 @@
 ---
-- hosts: rancher
+- hosts: k8s
   become: yes
   roles:
     - ansible_rke
