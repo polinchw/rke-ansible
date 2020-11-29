@@ -45,6 +45,3 @@ galaxy_info:
         - xenial
         - yakkety
         - zesty
-
-dependencies:
-  - name: basisconfig.k8s_prerequisites
