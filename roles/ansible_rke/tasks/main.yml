@@ -1,0 +1,7 @@
+---
+# tasks file for k8s_rke
+- include_tasks: evaluate_node_groups.yml
+
+- include_tasks: prerequisites.yml
+
+- include_tasks: deploy_cluster.yml

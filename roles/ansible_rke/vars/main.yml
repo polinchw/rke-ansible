@@ -1,0 +1,80 @@
+---
+# vars file for k8s_rke
+k8s_kernel_modules:
+  - br_netfilter
+  - ip6_udp_tunnel
+  - ip_set
+  - ip_set_hash_ip
+  - ip_set_hash_net
+  - iptable_filter
+  - iptable_nat
+  - iptable_mangle
+  - iptable_raw
+  - nf_conntrack_netlink
+  - nf_conntrack
+  - nf_conntrack_ipv4
+  - nf_defrag_ipv4
+  - nf_nat
+  - nf_nat_ipv4
+  - nf_nat_masquerade_ipv4
+  - nfnetlink
+  - udp_tunnel
+  - veth
+  - vxlan
+  - x_tables
+  - xt_addrtype
+  - xt_conntrack
+  - xt_comment
+  - xt_mark
+  - xt_multiport
+  - xt_nat
+  - xt_recent
+  - xt_set
+  - xt_statistic
+  - xt_tcpudp
+
+k8s_master_ports:
+  - 2376/tcp
+  - 6443/tcp
+  - 8472/udp
+  - 9099/tcp
+  - 10250/tcp
+  - 10254/tcp
+  - 30000-32767/tcp
+  - 30000-32767/udp
+
+k8s_etcd_ports:
+  - 2376/tcp
+  - 2379-2380/tcp
+  - 8472/udp
+  - 9099/tcp
+  - 10250/tcp
+
+k8s_worker_ports:
+  - 80/tcp
+  - 443/tcp
+  - 2376/tcp
+  - 8472/udp
+  - 9099/tcp
+  - 10250/tcp
+  - 10254/tcp
+  - 30000-32767/tcp
+  - 30000-32767/udp
+
+rke_dedicated_node_role_key: "node-role.kubernetes.io/{{ rke_dedicated_node_role_name | default('') }}"
+
+rke_dedicated_node: |
+  {
+    "labels": {
+      "{{ rke_dedicated_node_role_key }}": true
+    },
+    "taints": [
+      {
+        "key": "{{ rke_dedicated_node_role_key }}",
+        "value": true,
+        "effect": "NoSchedule"
+      }
+    ]
+  }
+
+kubetools_kubectl_version: "{{ rke_kubernetes_version.split('-')[0] }}"

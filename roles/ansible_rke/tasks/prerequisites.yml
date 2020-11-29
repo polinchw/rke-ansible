@@ -1,0 +1,45 @@
+---
+# tasks file for k8s_rke
+- name: Create user for deploy on RKE node
+  user:
+    name: "{{ rke_user }}"
+    generate_ssh_key: True
+    ssh_key_bits: 4096
+    ssh_key_file: .ssh/id_rsa
+    groups: docker
+    append: True
+  register: rke_user_return
+  run_once: True
+  delegate_to: "{{ rke_node }}"
+
+- name: Create user for deploy on anothers nodes
+  user:
+    name: "{{ rke_user }}"
+    groups: docker
+    append: True
+
+- name: Set rke variables
+  set_fact:
+    _rke_config_dir: "{{ rke_user_return.home }}/rke"
+    _rke_ssh_key_file: "{{ rke_user_return.ssh_key_file }}"
+    _rke_ssh_public_key: "{{ rke_user_return.ssh_public_key }}"
+
+- name: Copy the SSH public key
+  authorized_key:
+    user: "{{ rke_user }}"
+    key: "{{ _rke_ssh_public_key }}"
+    state: present
+
+- name: Configure SSH daemon
+  replace:
+    path: /etc/ssh/sshd_config
+    regexp: '^(#?(AllowTcpForwarding)\s(no|yes))$'
+    replace: 'AllowTcpForwarding yes'
+    mode: '0644'
+  register: sshd_config_state
+
+- name: Restart sshd
+  systemd:
+    name: sshd
+    state: restarted
+  when: sshd_config_state is changed
