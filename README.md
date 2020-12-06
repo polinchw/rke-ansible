@@ -5,7 +5,7 @@ Rancher's RKE based kubernetes cluster.
 
 ## Instructions
 
-### Creates Linux VMs for the Kubernetes cluster
+### Create Linux VMs for the Kubernetes cluster
 
 You will need some Linux VMs to run your RKE cluster on.  You can 
 create these however you like (AWS, GCP, Openstack).
