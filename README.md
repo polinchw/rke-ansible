@@ -23,7 +23,7 @@ authorized_keys  id_rsa  id_rsa.pub  known_hosts
 
 #### Add your RKE IPs to /etc/hosts
 
-Add your RKE VMs IPs to your `/ect/hosts` file on your ansible VM.
+Add your RKE VM IPs to your `/ect/hosts` file on your ansible VM.
 
 Mine looks like this:
 
@@ -49,9 +49,9 @@ ansible-playbook -i hosts.ini rke-playbook.yml -v
 ```
 
 After this runs your RKE Kubernetes cluster should be running.
-To verify this ssh from the ansible vm and run kubectl get nodes.
+To verify the cluster is running ssh to the Kubernetes master vm and run `kubectl get nodes`.
 
-Root up and run this:
+Root up and run this on kube-1:
 
 ```ubuntu@kube-1:~$ sudo su -
 root@kube-1:~# kubectl get nodes
