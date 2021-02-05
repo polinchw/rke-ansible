@@ -27,10 +27,10 @@
     state: present
 
  - name: Install docker
-  apt:
-    update_cache: yes
-    name: docker-ce
-    state: present
+   apt:
+     update_cache: yes
+     name: docker-ce
+     state: present
 
 - name: Create user for deploy on RKE node
   user:
