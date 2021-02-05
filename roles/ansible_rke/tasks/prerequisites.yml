@@ -1,5 +1,9 @@
 ---
 # tasks file for k8s_rke
+- name: Ensure group "docker" exists
+  ansible.builtin.group:
+    name: docker
+    state: present
 - name: Create user for deploy on RKE node
   user:
     name: "{{ rke_user }}"
