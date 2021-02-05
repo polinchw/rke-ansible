@@ -32,6 +32,24 @@
     name: docker-ce
     state: present
 
+- name: Add Google official GPG key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add Kubernetes Repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+    filename: kubernetes
+    mode: 0600
+
+- name: Installing Kubernetes Cluster Packages.
+  apt:
+    name:
+      - kubectl
+    state: present
+
 - name: Create user for deploy on RKE node
   user:
     name: "{{ rke_user }}"
