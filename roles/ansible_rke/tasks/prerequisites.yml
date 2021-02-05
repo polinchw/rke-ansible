@@ -26,11 +26,11 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable
     state: present
 
- - name: Install docker
-   apt:
-     update_cache: yes
-     name: docker-ce
-     state: present
+- name: Install docker
+  apt:
+    update_cache: yes
+    name: docker-ce
+    state: present
 
 - name: Create user for deploy on RKE node
   user:
