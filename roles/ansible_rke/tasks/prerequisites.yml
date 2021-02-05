@@ -4,6 +4,34 @@
   ansible.builtin.group:
     name: docker
     state: present
+
+- name: Install apt packages
+  apt:
+    update_cache: yes
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+    state: present
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker apt repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable
+    state: present
+
+ - name: Install docker
+  apt:
+    update_cache: yes
+    name: docker-ce
+    state: present
+
 - name: Create user for deploy on RKE node
   user:
     name: "{{ rke_user }}"
