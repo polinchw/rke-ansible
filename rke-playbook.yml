@@ -1,7 +1,6 @@
 ---
 - hosts: k8s
   become: yes
-  vars_files:
-    ansible_rke/vars/openstack.yml
+  vars_files: roles/ansible_rke/vars/openstack.yml
   roles:
     - ansible_rke
