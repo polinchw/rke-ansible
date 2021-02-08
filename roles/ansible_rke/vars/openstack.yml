@@ -12,7 +12,7 @@ rke_cloud_provider_config:
       bs-version: v2
       trust-device-path: true
     load_balancer:
-      subnet-id: "'{{ lookup('env', 'os_subnet_id') }}'"
+      subnet-id: "'{{ lookup('env', 'os_lb_subnet_id') }}'"
       floating-network-id: "'{{ lookup('env', 'os_floating_network_id') }}'"
 
 # Use the addons to install the default storage class
