@@ -2,7 +2,7 @@ rke_cloud_provider_config:
   name: openstack
   openstackCloudProvider:
     global:
-      auth-url: http://172.16.10.2:5000/v3/
+      auth-url: "{{ lookup('env', 'os_auth_url') }}"
       username: "{{ lookup('env', 'os_username') }}"
       password: "{{ lookup('env', 'os_password') }}"
       region: RegionOne
@@ -14,6 +14,7 @@ rke_cloud_provider_config:
     load_balancer:
       subnet-id: "{{ lookup('env', 'os_lb_subnet_id') }}"
       floating-network-id: "{{ lookup('env', 'os_floating_network_id') }}"
+      use-octavia: true
 
 # Use the addons to install the default storage class
 rke_cloud_provider_addons: |-
